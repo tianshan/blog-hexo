@@ -1,0 +1,80 @@
+---
+title: 2017年中
+date: 2017-07-02 21:58:02
+tags: blog
+---
+
+工作一年了，感觉对技术方向有点迷失，可能还是自己坚持不够，就重新拾掇起博客。
+
+首先把用hexo改造了下博客。hexo会生成静态页面，加载速度会更快，部署和使用方式上也比原生的简单很多。
+切换过程，直接搜索hexo的部署教程，并不麻烦。
+
+遇到的问题：
+
+1.安装hexo的问题
+
+{ [Error: Cannot find module './build/Release/DTraceProviderBindings'] 
+参考：[https://github.com/hexojs/hexo/issues/1055](https://github.com/hexojs/hexo/issues/1055)
+
+2.hexo的目录结构
+
+sources
+	|- `_posts` 对应原来的 `_posts`，文章目录
+	|- `images` 对应原来的 `images`，图片目录
+
+3.文章时间
+
+在没有指定时间时，会根据文件的创建时间决定。
+可以在文章头指定date，格式 YYYY-MM-DD hh:mm:ss
+
+
+4.语法高亮
+
+之前用的kramdown，语法高亮格式时 `{ % highlight c % }`，这边不识别，用python脚本转换了下
+
+其他还有些文章链接地址保持的问题和锚点格式的问题。
+
+转换脚本
+
+``` python
+#!/usr/bin/env python
+import sys
+
+name = sys.argv[1]
+date = name[:10]
+
+with open(name) as fi:
+    lines = fi.readlines()
+    fw = open(name, 'w')
+
+    for i,line in enumerate(lines):
+        if 'endhighlight' in line:
+            line = '```\n'
+        elif 'highlight' in line:
+            try:
+                lang = line.split()[3]
+                line = '```'
+                if lang != '%}':
+                    line += ' ' + lang
+                line += '\n'
+            except:
+                print 'not highlight'
+                print line
+        elif '{#' in line:
+            line = line.replace('{', '](')
+            line = line.replace('}', ')')
+            for i,c in enumerate(line):
+                if c != '#':
+                    break
+            if c == ' ':
+                i += 1
+            line = line[:i] + '[' + line[i:]
+        elif 'site.imageurl' in line:
+            line = line.replace('{{site.imageurl}}', '/images')
+
+        fw.write(line)
+        if i == 1:
+            date = 'date: ' + date + '\n'
+            fw.write(date)
+    fw.close()
+```

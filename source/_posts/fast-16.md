@@ -1,0 +1,24 @@
+---
+title: Fast 16年部分论文
+date: 2016-03-13
+tags: 论文
+---
+
+Fast 16年的论文全集前段时间出来了，先读了EC相关的，其他的后面找时间读。
+全集地址：<https://www.usenix.org/conference/fast16/technical-sessions>
+
+### Efficient and Available In-memory KV-Store with Hybrid Erasure Coding and Replication
+
+内存KV系统，贡献一：元数据使用副本，保持高效访问，在数据部分失效时，还能提供访问。数据部分使用ec，节省空间。
+贡献二：online recovery，没看出来有啥特别的。。。可能是因为memcached没有提供复杂的恢复机制？
+贡献三：在Memcached中实现了上述
+他有个假设是后端还有持久化系统，所以我的理解，内存掉电时，如果不够恢复，那只能依靠其他了，这部分论文没有涉及。
+
+
+### Opening the Chrysalis: On the Real Repair Performance of MSR Codes
+
+主要网络编码在工业系统中的应用，实现在了HDFS（批量编码，类似HDFS-Raid）Ceph（在线编码），并比较了多项参数。
+网络编码
+相比普通EC能节省传输带宽。主要思想，一个节点会存储不止一个编码块（例如r个），修复时，会将本节点的多个编码块编码成一个，所以只要传输1/r存储大小。
+缺点，编码更复杂，计算开销也会上升。本片论文采用蝴蝶码，基于GF(2)，所以计算开销不高，只能容忍2块丢失（m固定为2，k任意），感觉有点类似Raid6。
+暂时还未找到公开代码。

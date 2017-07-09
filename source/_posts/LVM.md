@@ -1,0 +1,72 @@
+---
+title: Linux LVM逻辑卷的配置
+date: 2015-03-04
+tags: lvm
+---
+
+LVM全程Logical Volume Manager 逻辑卷管理器，是Linux对磁盘分区进行管理的一种机制，是建立在硬盘和分区之上、文件系统之下的一个逻辑层，可提高磁盘分区管理的灵活性。
+要创建逻辑卷，首先要创建物理卷PV（Physical Volume），然后卷组VG（Volume Group），最后逻辑卷LV（Logical Volume）。
+
+<!--more-->
+
+Ceph的单机版本部署参考[博客](http://blog.coolceph.com/?p=85)，为集群准备OSD空间。
+注意，分配的OSD空间要大于配置文件Ceph.conf中 `osd journal size`  ，单位为MB。
+
+
+创建LVM
+---
+
+### 准备磁盘空间， 这一步使用逻辑卷进行操作
+1. 准备空闲分区为： 我的ubuntu在虚拟机，通过扩容后新建分区（可以通过fdisk命令） /dev/sda3
+2. 创建物理卷：
+    pvcreate /dev/sda3
+    * 参数： `pvcreate 物理卷`
+    * 用于将物理硬盘分区初始化为物理卷，以便被LVM使用，需要空闲分区。
+3. 创建LVM卷组：
+    vgcreate ceph /dev/sda3 
+    * 参数： `vgcreate 卷组名 物理卷列表`
+    * 将多个物理卷组织成一个整体，屏蔽了底层物理卷细节。在卷组创建逻辑卷时不用考虑具体的物理卷信息。
+4. 创建三个LVM的逻辑卷， 分别用于创建三个osd
+
+    lvcreate -n 逻辑卷名 -L 逻辑卷大小 逻辑卷
+    sudo lvcreate -n osd.0 -L 1G ceph
+    sudo lvcreate -n osd.1 -L 1G ceph
+    sudo lvcreate -n osd.2 -L 1G ceph
+
+
+扩展LVM
+---
+
+要确保逻辑卷所在卷组有足够的空闲空间可用。先扩展物理边界，再扩展逻辑边界。
+
+1. 扩展物理边界
+    
+    sudo lvextend -L 2G /dev/ceph/osd.0
+
+    输入命令 `lvs` 时，已经可以看到大小已经变为2G。
+    注意，-L后的大小是扩展到的大小，不是多增的大小。
+
+2. 扩展逻辑边界
+
+    sudo resize2fs /dev/ceph/osd.0
+
+    注意
+    
+    * resize2fs 工具只适用于 `ext2、ext3、ext4` .
+    * xfs 系统可以使用 xfs_growfs
+    * btrfs系统可以使用 `sudo btrfs filesystem resize [+/-]<newsize>[gkm]|max <path>` ，其中<path>为挂在后的路径
+
+删除逻辑卷
+---
+
+lvremove [选项] [参数]
+
+* 选项
+    
+-f 强制删除
+
+* 参数
+
+逻辑卷 指定要删除的逻辑卷
+
+注意，如果逻辑卷已经mount，需要先umount，如果出现设备忙，可以加上选项 -l

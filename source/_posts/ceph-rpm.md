@@ -1,0 +1,71 @@
+---
+title: Ceph源码构建并安装
+date: 2015-07-21
+tags: ceph
+---
+
+如果需要要修改Ceph源码，就要自己构建安装包，然后指定ceph-deploy的安装源。
+本文主要介绍从git上clone源码，然后用rpmbuild打包，最后用ceph-deploy安装。
+环境为Centos，ceph版本0.94.2(hammer)，不同版本的文件稍微有点不一样。
+
+<!--more-->
+
+RPM打包
+---
+
+官方的RPM打包教程<http://ceph.com/docs/master/install/build-ceph/>。
+如果只是尝试打包的话，这个教程基本够了，下面主要讲从git源码开始。
+
+1.git(recursive会把子模块一起克隆)  
+
+```bash
+git clone --recursive https://github.com/ceph/ceph.git
+```
+
+2.切换到目前最新的Hammer版（0.94.2），切换前先复制下两个用来打包的文件
+
+```bash
+cd ceph
+#复制打包命令
+cp make_dist.sh ../ 
+cp -r bin ../
+#切换release分之
+git checkout v0.94.2
+```
+
+3.把源码压缩为bz2文件，要用到之前复制的打包命令。结束后会在目录下出现ceph-0.94.2.tar.bz2文件
+
+```bash
+#复制文件
+cp ../make_dist.sh ./
+cp -r ../bin ./
+#执行压缩打包
+./make_dist 0.94.2
+```
+
+4.准备rpmbuild目录
+
+5.准备构建文件
+
+```bash
+#复制源码
+cp ceph/ceph-0.94.2.tar.bz2 rpmbuild/SOURCES/
+#复制补丁文件
+cp ceph/rpm/init-ceph.in-fedora.patch rpmbuild/SOURCES/
+#复制spec文件
+cp ceph/ceph.spec.in rpmbuild/SPECS/ceph.spec
+```
+
+6.开始build，编译完成会在`rpmbuild/RPMS/x86_64`目录下生成打包文件
+
+```bash
+rpmbuild -ba rpmbuild/SPECS/ceph.spec
+```
+
+> 注意，编译大概需要近20G存储空间
+
+
+ceph-deploy源指定
+---
+
+待续
