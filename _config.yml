@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://tianshan.github.io
+utl: http://tianshan.github.io
 root: /
 permalink: :year/:month/:day/:title/
 #permalink: :title/
@@ -71,6 +71,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/tianshan/tianshan.github.io.git
+  repo: git@github.com:tianshan/tianshan.github.io.git
   branch: master
   message:
