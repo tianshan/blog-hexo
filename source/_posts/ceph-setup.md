@@ -11,12 +11,13 @@ ceph-deploy的部署方式，可以[参考官网](http://ceph.com/docs/master/st
 
 1.编译
 ---
-[Ceph-compile]({% post_url 2015-02-23-ceph-compile %}#centos)
+{% post_link ceph-compile %}
 
 2.部署
 ---
 * monitor
-[ceph-deploy]({% post_url 2015-03-02-ceph-deploy %}#配置monitor)
+
+{% post_link ceph-deploy %}
 
 其中，主要步骤
 
@@ -27,7 +28,8 @@ ceph-deploy的部署方式，可以[参考官网](http://ceph.com/docs/master/st
 测试集群的可以省略密钥的配置。
 
 * osd
-[ceph-deploy]({% post_url 2015-03-02-ceph-deploy %}#添加osd)
+
+{% post_link ceph-deploy %}
 
 > 先把monitor的配置文件同步过来后，OSD可以按简单模式配置，启动参照复杂里的[11]
 
