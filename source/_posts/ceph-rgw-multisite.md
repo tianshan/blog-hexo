@@ -8,6 +8,8 @@ tags: [ceph, rgw]
 
 ceph从J版开始，重构了multisite方案，改变了原来配置复杂，同步难于管理的问题。新版简化了配置，zone之间通过内部的协程框架同步。本篇先简单介绍同步流程。
 
+<!-- more -->
+
 ### 同步日志
 
 datalog，记录了每一个op的修改，记录于log池，omap形式，每个entry记录了全局单调递增的id，作为marker

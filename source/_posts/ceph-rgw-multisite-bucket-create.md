@@ -6,6 +6,8 @@ tags: [ceph,rgw,multisite]
 
 本篇是介绍ceph multisite第二篇，从多zone同步的 `桶创建` 看元数据的同步过程。zonegroup下多zone元数据是强同步，所有从zone的元数据修改会重定向到主zone，主zone的元数据修改会通知给所有从zone。而数据部分是多zone可以同时写入，所有zone之间会相互同步，实现最终数据一致。
 
+<!-- more -->
+
 ### 测试
 
 源码中，`test`目录有脚本可以快速搭建多个集群，方便本地测试multisite。  
