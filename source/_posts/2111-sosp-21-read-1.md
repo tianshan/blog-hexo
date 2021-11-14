@@ -1,0 +1,31 @@
+---
+title: SOSP-21 存储方向论文速读一
+date: 2021-11-14 16:24:33
+tags: filesystem
+---
+
+最近在学习新的文件存储思路，陆续整理了下，尝试做一些总结。SOSP 21年在10月份论文都放出来了，分享一部分。
+
+<!-- more -->
+
+### Scale and Performance in a Filesystem Semi-Microkernel
+
+论文项目：https://github.com/WiscADSL/uFS
+论文：https://dl.acm.org/doi/10.1145/3477132.3483581
+
+总结:
+* 论文在用户态实现了本地文件系统，利用spdk充分利用NVME设备。
+  * 提供了一种集中处理dentry，by thread shard inode 的处理思路，提到可以并发写入journal，于此提供高性能服务。
+  * 基于by thread做了一个动态调度，监控系统复杂然后可以自适应调整inode映射。
+* 实现偏理想化posix功能不完整，不太适合通用文件场景，本地自己使用可以尝试。
+
+速读代码分析：
+* 类似状态机实现IO异步处理
+* in mem inode组织
+  * std::unordered_map<uint32_t, InMemInode *> inodeMap_
+  * 读取用了一把全局锁
+* 独立Worker
+  * 每个都包含dev指针，利用spdk实现了
+* journal可以分区的原因：
+  * inode和dentry的存储布局设计参考了本地文件系统
+  * inode和dentry的修改是分开的
