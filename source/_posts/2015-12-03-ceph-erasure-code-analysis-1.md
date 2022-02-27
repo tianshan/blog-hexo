@@ -1,7 +1,7 @@
 ---
 title: Ceph EC的代码分析(一)
 date: 2015-12-03
-tags: ceph ErasureCode
+tags: ceph
 ---
 
 传统的存储可靠性都是用多副本实现，但是很多大容量备份场景、多媒体内容存储等，多副本的存储成本已经不能忍受，ErasureCode是通用的解决方案，而且这些场景往往是一次写多次读，很适合EC的特点。

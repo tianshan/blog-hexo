@@ -1,7 +1,7 @@
 ---
 title: Ceph中EC的对齐
 date: 2015-11-23
-tags: ceph ErasureCode
+tags: ceph
 ---
 
 ErasureCode应用在存储中的是满足MDS性质的线性分组码，最常用的是Reed Solomon编码。 将一份数据切成K块数据块，然后编码成M块校验块，放到K+M个OSD上，可以容忍任意M块丢失。

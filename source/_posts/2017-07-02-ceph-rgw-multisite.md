@@ -1,7 +1,7 @@
 ---
 title: ceph-rgw-multisite
 date: 2017-07-02 22:53:33
-tags: [ceph, rgw]
+tags: rgw
 ---
 
 工作一年，基本一直在做rgw，本篇作为续写博客第一篇，从最近看的multisite写起，争取在架构和代码上给rgw写一个系列。

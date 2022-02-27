@@ -1,7 +1,9 @@
 ---
 title: python pdb调试
 date: 2015-08-26
-tags: python pdb
+tags:
+- python
+- pdb
 ---
 
 简单记录pdb的使用

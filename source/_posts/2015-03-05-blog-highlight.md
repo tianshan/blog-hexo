@@ -1,7 +1,7 @@
 ---
 title: jekyll 语法高亮
 date: 2015-03-05
-tag: blog
+tags: blog
 ---
 
 记录折腾博客语法高亮的问题。

@@ -1,7 +1,7 @@
 ---
 title: Calamari部署
 date: 2015-07-25
-tags: ceph calamari
+tags: ceph
 ---
 
 Calamari是Ceph官方出品的监控平台，监控内容很丰富，可以做一些基本的运维操作，但是还不能做Ceph部署，需要结和ceph-deploy。

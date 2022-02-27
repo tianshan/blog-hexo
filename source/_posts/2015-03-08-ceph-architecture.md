@@ -1,7 +1,7 @@
 ---
 title: Ceph架构
 date: 2015-03-08
-tag: ceph
+tags: ceph
 ---
 
 翻译自官网，原文：<http://ceph.com/docs/master/architecture/>
