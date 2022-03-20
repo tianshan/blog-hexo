@@ -1,7 +1,7 @@
 ---
 title: "【翻译】C++ Coroutines: understanding-operator-co-await"
 date: 2022-03-05 16:08:30
-tags: coroutines
+tags: coroutine
 ---
 
 这是*Lewis Baker*讲解协程的第二篇，主要介绍
