@@ -1,5 +1,5 @@
 ---
-title: Ceph测试集群搭建
+title: "Ceph测试集群搭建"
 date: 2015-05-19
 tags: ceph
 ---

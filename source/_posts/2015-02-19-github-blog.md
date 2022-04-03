@@ -1,5 +1,5 @@
 ---
-title: 搭建github博客
+title: "搭建github博客"
 date: 2015-02-19
 tags: blog
 ---

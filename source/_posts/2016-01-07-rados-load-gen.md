@@ -1,5 +1,5 @@
 ---
-title: Ceph Rados的测试：load-gen
+title: "Ceph Rados的测试：load-gen"
 date: 2016-01-07
 tags: ceph
 ---

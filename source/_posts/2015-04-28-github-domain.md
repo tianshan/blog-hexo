@@ -1,5 +1,5 @@
 ---
-title: github pages 域名配置
+title: "github pages 域名配置"
 date: 2015-04-28
 tags: blog
 ---

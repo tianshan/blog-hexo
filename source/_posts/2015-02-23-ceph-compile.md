@@ -1,5 +1,5 @@
 ---
-title: Ceph 编译
+title: "Ceph 编译"
 date: 2015-02-23
 tags: ceph
 ---

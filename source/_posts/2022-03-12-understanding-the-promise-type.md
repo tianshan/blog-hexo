@@ -1,5 +1,5 @@
 ---
-title: "【翻译】C++ Coroutines: understanding-the-promise-type"
+title: "【翻译】 C++ Coroutines: understanding-the-promise-type"
 date: 2022-03-12 21:26:19
 tags: coroutine
 ---
@@ -93,7 +93,7 @@ FinalSuspend:
 
 有一些需要注意的重点：
 
-传入`operator new`的大小不是`sizeof(P)`，而是包括了整个协程栈的大小以及编译器根据参数个数和大小、promise对象大小、局部变量的个数与大小和编译器特定的用于管理携程状态的存储开销一起自动决定的。
+传入`operator new`的大小不是`sizeof(P)`，而是包括了整个协程栈的大小以及编译器根据参数个数和大小、promise对象大小、局部变量的个数与大小和编译器特定的用于管理协程状态的存储开销一起自动决定的。
 
 编译器可以根据如下情形来优化掉`operator new`:
 

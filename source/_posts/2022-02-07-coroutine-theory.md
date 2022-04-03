@@ -1,5 +1,5 @@
 ---
-title: "【翻译】Coroutine Theory"
+title: "[翻译] Coroutine Theory"
 date: 2022-02-27 21:36:39
 tags: coroutine
 ---

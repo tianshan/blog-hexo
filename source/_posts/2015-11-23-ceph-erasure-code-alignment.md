@@ -1,5 +1,5 @@
 ---
-title: Ceph中EC的对齐
+title: "Ceph中EC的对齐"
 date: 2015-11-23
 tags: ceph
 ---

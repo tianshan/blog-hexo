@@ -1,5 +1,5 @@
 ---
-title: Ceph的Librados介绍
+title: "Ceph的Librados介绍"
 date: 2015-03-17
 tags: ceph
 ---

@@ -1,5 +1,5 @@
 ---
-title: Ceph的Journal机制
+title: "Ceph的Journal机制"
 date: 2015-05-29
 tags: ceph
 ---

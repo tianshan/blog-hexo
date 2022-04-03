@@ -1,5 +1,5 @@
 ---
-title: Ceph 源码部署
+title: "Ceph 源码部署"
 date: 2015-03-02
 tags: ceph
 ---

@@ -1,5 +1,5 @@
 ---
-title: Calamari部署
+title: "Calamari部署"
 date: 2015-07-25
 tags: ceph
 ---

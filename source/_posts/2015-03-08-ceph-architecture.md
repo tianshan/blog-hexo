@@ -1,5 +1,5 @@
 ---
-title: Ceph架构
+title: "Ceph架构"
 date: 2015-03-08
 tags: ceph
 ---

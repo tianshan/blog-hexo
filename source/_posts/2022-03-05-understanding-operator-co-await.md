@@ -1,5 +1,5 @@
 ---
-title: "【翻译】C++ Coroutines: understanding-operator-co-await"
+title: "【翻译】 C++ Coroutines: understanding-operator-co-await"
 date: 2022-03-05 16:08:30
 tags: coroutine
 ---
@@ -8,8 +8,8 @@ tags: coroutine
 * awaite，awaiter相关概念
 * awaite细节机制，包括c++
 * 实现awaite对象的例子
-原文：https://lewissbaker.github.io/2017/11/17/understanding-operator-co-await
 
+原文：https://lewissbaker.github.io/2017/11/17/understanding-operator-co-await
 * {% post_link 2022-02-07-coroutine-theory "第一篇 Coroutine Theory" %}
 
 在上一篇中，我描述了函数和协程的高层区别，但是没有深入{% link C++协程提案 http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4680.pdf %}中描述的语法和语义细节。
